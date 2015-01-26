@@ -3,6 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>	//for atof()
 #include<ctype.h>
+#include<math.h>
 
 #define MAX 100
 #define NUMBER '0'
@@ -38,7 +39,12 @@ int main() {
 				break;
 			case '/' :
 				op = pop();
-				push(pop() / op);
+				if(op != 0) {
+					push(pop() / op);
+				}
+				else {
+					printf("error : division by zero");
+				}
 				break;
 			case '\n' :
 				printf("\n%.8g\n",pop());
