@@ -16,6 +16,7 @@ void push(double);
 double pop();
 
 int main() {
+
 	int type;
 	char s[MAX];
 	double op;
@@ -50,7 +51,6 @@ int main() {
 
 	return 0;
 }
-
 
 int getop(char s[]) {
 	int i,c;
