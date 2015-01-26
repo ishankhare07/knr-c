@@ -71,6 +71,10 @@ int getop(char s[]) {
 			c = getchar();
 		}
 	}
+	if(c == '.') {
+                s[i] = c;
+                while(isdigit(s[i++] = c = getchar()));
+        }
 
 	s[i] = '\0';
 	return NUMBER;
