@@ -1,4 +1,4 @@
-/*reverse polish calculator with modulus and negative numbers*/
+/*reverse polish calculator with modulus and negative numbers and other features*/
 
 #include<stdio.h>
 #include<stdlib.h>	//for atof()
@@ -24,7 +24,7 @@ int main() {
 
 	int type;
 	char s[MAX];
-	double op;
+	double op,op2;
 
 	while((type = getop(s)) != EOF) {
 		switch(type) {
@@ -57,6 +57,27 @@ int main() {
 				}
 				else {
 					printf("error : modulo by zero");
+				}
+				break;
+			case '?' :		//print top of stack without popping
+				op = pop();
+				printf("top of stack : %f\n",op);
+				push(op);
+				break;
+			case '~' :		//duplicating top of stack
+				op = pop();
+				push(op);
+				push(op);
+				break;
+			case '<' :		//swap top 2 elements
+				op = pop();
+				op2 = pop();
+				push(op);
+				push(op2);
+				break;
+			case '>' :		//clear the stack
+				while(op = pop()) {
+					printf("%f\n",op);
 				}
 				break;
 			case '\n' :
