@@ -1,4 +1,4 @@
-/*reverse polish calculator*/
+/*reverse polish calculator with modulus and negative numbers and other features*/
 
 #include<stdio.h>
 #include<stdlib.h>	//for atof()
@@ -11,16 +11,20 @@
 
 int top = 0;
 double val[MAXVAL];
+char buf[MAX];
+int bufp = 0;
 
 int getop(char []);
 void push(double);
 double pop();
+int my_getch();
+void ungetch(int);
 
 int main() {
 
 	int type;
 	char s[MAX];
-	double op;
+	double op,op2;
 
 	while((type = getop(s)) != EOF) {
 		switch(type) {
@@ -46,6 +50,36 @@ int main() {
 					printf("error : division by zero");
 				}
 				break;
+			case '%' :
+				op = pop();
+				if(op != 0) {
+					push(fmod(pop(),op));
+				}
+				else {
+					printf("error : modulo by zero");
+				}
+				break;
+			case '?' :		//print top of stack without popping
+				op = pop();
+				printf("top of stack : %f\n",op);
+				push(op);
+				break;
+			case '~' :		//duplicating top of stack
+				op = pop();
+				push(op);
+				push(op);
+				break;
+			case '<' :		//swap top 2 elements
+				op = pop();
+				op2 = pop();
+				push(op);
+				push(op2);
+				break;
+			case '>' :		//clear the stack
+				while(op = pop()) {
+					printf("%f\n",op);
+				}
+				break;
 			case '\n' :
 				printf("\n%.8g\n",pop());
 				break;
@@ -60,27 +94,49 @@ int main() {
 
 int getop(char s[]) {
 	int i,c;
-	while((s[0] = c = getchar()) == ' ' || c == '\t');	//this and following line will skip all the leading spaces before a number or operator
+	while((s[0] = c = my_getch()) == ' ' || c == '\t');	//this and following line will skip all the leading spaces before a number or operator
 	s[1] = '\0';
+	i = 0;
+
+	if(c == '-') {
+		if(isdigit(c = my_getch()) || c == '.') {
+			s[i++] = '-';
+		}
+		else {
+			ungetch(c);
+			return '-';
+		}
+	}
 
 	if(!isdigit(c) && c != '.') {
 		return c;	//not a number
 	}
 
-	i = 0;
 	if(isdigit(c)) {	//collect integer part
 		while(isdigit(s[i++] = c)) {
-			c = getchar();
+			c = my_getch();
 		}
 	}
-
 	if(c == '.') {
-		s[i] = c;
-		while(isdigit(s[i++] = c = getchar()));
-	}
+                s[i] = c;
+                while(isdigit(s[i++] = c = my_getch()));
+        }
 
 	s[i] = '\0';
 	return NUMBER;
+}
+
+int my_getch() {
+	return (bufp > 0) ? buf[--bufp] : getchar();
+}
+
+void ungetch(int c) {
+	if(bufp > MAX) {
+		printf("ungetch : too many characters\n");
+	}
+	else {
+		buf[bufp++] = c;
+	}
 }
 
 void push(double f) {
