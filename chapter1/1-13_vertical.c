@@ -8,7 +8,7 @@ int main()
 		length[i] = 0;
 	}
 	i = 0;
-	while((c = getchar()) != EOF)
+	while((c = getchar()) != EOF && i < 10)
 	{
 		if(c == ' ' || c == '\t' || c == '\n')
 		{
