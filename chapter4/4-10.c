@@ -47,8 +47,7 @@ int main() {
 				printf("error: unknown command %s\n", s);
 				break;
 		}
-	}
-
+    }	
 	return 0;
 }
 
