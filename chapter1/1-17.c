@@ -4,7 +4,7 @@
 #define LENGTH 80
 #define MAX 1000
 
-int getl(char [], int);
+int getl(char [], int);         //getline
 
 int main()
 {
@@ -23,7 +23,7 @@ int main()
 int getl(char s[], int lim)
 {
 	int c,i;
-	for(i = 0 ; i < lim && (c = getchar()) != '\n' && c != EOF ; ++i)
+	for(i = 0 ; i < lim-1 && (c = getchar()) != '\n' && c != EOF ; ++i)
 	{
 		s[i] = c;
 	}

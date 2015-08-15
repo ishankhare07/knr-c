@@ -39,5 +39,6 @@ void reverse(char s[], int lim)
 	{
 		rev[j] = s[i];
 	}
+    rev[j] = '\0';
 	printf("\n%s\n",rev);
 }
