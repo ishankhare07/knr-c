@@ -32,7 +32,7 @@ void month_day(int year, int day, int *pmonth, int *pday) {
 int day_of_year(int year, int month, int day) {
     int i, leap;
 
-    leap = (year % 4 == 0 && year % 100 == 0 || year % 400 == 0);
+    leap = (year % 4 == 0 && year % 100 != 0 || year % 400 == 0);
     for(i = 0; i < month - 1; i++) {
         day += daytab[leap][i];
     }
