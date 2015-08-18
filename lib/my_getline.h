@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int getl(char *s, int limit) {
-    int size, c;
+    int size=0, c;
 
     while((c = getchar()) != EOF && c != '\n') {
         *s++ = c;
