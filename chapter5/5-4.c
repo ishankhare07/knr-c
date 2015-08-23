@@ -23,13 +23,13 @@ int strend(char *s, char *t) {
             s++;
             t++;
         } else if(!(*t)) {
-            return 0;       // t exhausted but s not exhausted
+            return 0;           // t exhausted but s not exhausted
         } else {
-            t = start;
-            if(*t == *s) {
-                continue;
+            t = start;          // reset t to starting
+            if(*t == *s) {      // check if starting of t matches s
+                continue;       // if yes then don't increment s, let it be handled by the 1st if case
             } else {
-                s++;
+                s++;            // it does not match, so just start matching with next char
             }
         }
     }
