@@ -25,8 +25,12 @@ int strend(char *s, char *t) {
         } else if(!(*t)) {
             return 0;       // t exhausted but s not exhausted
         } else {
-            s++;
             t = start;
+            if(*t == *s) {
+                continue;
+            } else {
+                s++;
+            }
         }
     }
 
