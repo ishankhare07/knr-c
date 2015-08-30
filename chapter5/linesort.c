@@ -10,7 +10,6 @@
 void quicksort(char *[], int, int);
 void swap(char **, int, int);
 void writelines(char **, int);
-int stringcmp(char *, char *);
 
 int main() {
     char l[SIZE];
@@ -64,17 +63,4 @@ void swap(char **v, int i, int j) {
     temp = v[i];            // only swapping the pointers
     v[i] = v[j];
     v[j] = temp;
-}
-
-int stringcmp(char *s, char *t) {
-    while(*s == *t) {
-        if(*s == '\0') {
-            return 0;
-        }
-        printf("s-> %s t-> %s", s, t);
-        s++;
-        t++;
-    }
-
-    return *s - *t;
 }
