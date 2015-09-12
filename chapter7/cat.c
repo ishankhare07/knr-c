@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void filecopy(FILE *, FILE *);
 
@@ -10,7 +11,7 @@ int main(int argc, char *argv[]) {
         while(--argc) {
             if((fp = fopen(*++argv, "r")) == NULL) {
                 fprintf(stderr, "%s: can't open %s\n", prog, *argv);
-                return 1;
+                exit(1);
             } else {
                 filecopy(fp, stdout);
                 fclose(fp);
